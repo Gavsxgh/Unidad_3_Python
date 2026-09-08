@@ -60,5 +60,4 @@ inicio
 fin
 ---
 ## Diagrama de flujo
-
 ![Caso 1](./Reto_und_3/Diagrama_RETO.png)
