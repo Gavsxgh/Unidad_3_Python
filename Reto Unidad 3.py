@@ -46,7 +46,7 @@ def main():
 
     aterrizo = False
 
-    print("=== MONITOR DE VUELO DEL COHETE ===")
+    print("MONITOR DE VUELO DEL COHETE")
     print("Escriba FIN en la presion para terminar")
 
     while True:
@@ -74,7 +74,7 @@ def main():
         # detecto el apogeo solo la primera vez que empieza a bajar
         if apogeo_detectado == False and altitud_actual < altitud_previa:
             apogeo_detectado = True
-            print(">>> AQUI FUE EL APOGEO <<<")
+            print("AQUI FUE EL APOGEO")
 
         estado = determinar_estado_vuelo(altitud_actual, altitud_previa, aceleracion)
         alarma = evaluar_alerta_temperatura(temperatura)
@@ -109,7 +109,7 @@ def main():
         promedio_temp = 0.0
 
     print("")
-    print("===== RESUMEN =====")
+    print("RESUMEN FINAL")
     print("Tiempo total: " + str(tiempo) + " s")
     print("Altitud maxima: " + str(round(altitud_maxima, 2)) + " m")
     print("Temperatura promedio: " + str(round(promedio_temp, 2)) + " C")
