@@ -59,3 +59,7 @@ inicio
     mostrar resumen (tiempo, altitud_maxima, promedio_temp, acel_maxima, aterrizo)
 
     fin
+
+    ---
+## Diagrama de flujo
+![Caso 1](./Imagenes/RETO.png)
