@@ -1,65 +1,32 @@
-inicio
-    tiempo = 0
-    altitud_previa = 0
-    altitud_maxima = 0
-    apogeo_detectado = falso
-    suma_temp = 0
-    cont_temp = 0
-    acel_maxima = 0
-    aterrizo = falso
-
-    mientras verdadero
-        pedir presion (o "FIN" para salir)
-        si el dato es "FIN" entonces
-            salir del bucle
-        fin si
-        pedir aceleracion
-        pedir temperatura
-
-        altitud_actual = calcular_altitud(presion)
-
-        si altitud_actual > altitud_maxima entonces
-            altitud_maxima = altitud_actual
-        fin si
-
-        si apogeo_detectado es falso y altitud_actual < altitud_previa entonces
-            apogeo_detectado = verdadero
-            mostrar "aqui fue el apogeo"
-        fin si
-
-        estado = determinar_estado_vuelo(altitud_actual, altitud_previa, aceleracion)
-        alarma = evaluar_alerta_temperatura(temperatura)
-
-        suma_temp = suma_temp + temperatura
-        cont_temp = cont_temp + 1
-        si aceleracion > acel_maxima entonces
-            acel_maxima = aceleracion
-        fin si
-
-        mostrar altitud, estado, altitud_maxima, apogeo_detectado
-        si alarma es verdadero entonces
-            mostrar "alarma temperatura"
-        fin si
-
-        si altitud_actual <= 0 y tiempo > 0 entonces
-            aterrizo = verdadero
-            salir del bucle
-        fin si
-
-        altitud_previa = altitud_actual
-        tiempo = tiempo + 1
-    fin mientras
-
-    si cont_temp > 0 entonces
-        promedio_temp = suma_temp / cont_temp
-    sino
-        promedio_temp = 0
-    fin si
-
-    mostrar resumen (tiempo, altitud_maxima, promedio_temp, acel_maxima, aterrizo)
-
-    fin
+funcion calcular_altitud(presion_hpa)
+    altitud = 44330 * (1 - (presion_hpa / 1013.25) ^ 0.1903)
+    devolver altitud
+fin funcion
 
     ---
+funcion determinar_estado_vuelo(altitud_actual, altitud_previa, aceleracion)
+    si altitud_actual > altitud_previa entonces
+        estado = "Ascenso"
+    sino
+        si altitud_actual <= 500 o aceleracion <= -15 entonces
+            estado = "Despliegue de Paracaidas"
+        sino
+            estado = "Apogeo / Caida libre"
+        fin si
+    fin si
+    devolver estado
+fin funcion
+
+---
+
+  funcion evaluar_alerta_temperatura(temp_celsius)
+    si temp_celsius >= 80 entonces
+        devolver verdadero
+    sino
+        devolver falso
+  
+fin si
+fin funcion
+
 ## Diagrama de flujo
 ![Caso 1](./Imagenes/RETO.png)
