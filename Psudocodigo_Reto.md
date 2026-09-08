@@ -57,4 +57,5 @@ inicio
     fin si
 
     mostrar resumen (tiempo, altitud_maxima, promedio_temp, acel_maxima, aterrizo)
-fin
+
+    fin

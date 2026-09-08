@@ -46,7 +46,7 @@ def main():
 
     aterrizo = False
 
-    print("MONITOR DE VUELO DEL COHETE")
+    print("=== MONITOR DE VUELO DEL COHETE ===")
     print("Escriba FIN en la presion para terminar")
 
     while True:
