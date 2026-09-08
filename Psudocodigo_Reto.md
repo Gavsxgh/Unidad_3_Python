@@ -3,7 +3,8 @@ funcion calcular_altitud(presion_hpa)
     devolver altitud
 fin funcion
 
-    ---
+ ---
+ 
 funcion determinar_estado_vuelo(altitud_actual, altitud_previa, aceleracion)
     si altitud_actual > altitud_previa entonces
         estado = "Ascenso"
