@@ -1,10 +1,10 @@
 # Sistema de Monitoreo de Vuelo para un Cohete Suborbital
 # Reto de programacion - Unidad 3
 
-# Constantes usadas
+# Constantes de cada elemento
 ALTURA_PARACAIDAS = 500.0
 DESACELERACION_PARACAIDAS = -15.0
-TEMP_LIMITE = 80.0
+TEMP_LIMITE = 95.0
 
 
 # funcion 1: calcular la altitud a partir de la presion
@@ -13,12 +13,12 @@ def calcular_altitud(presion_hpa):
     return altitud
 
 
-# funcion 2: Establecer fase de vuelo del cohete
+# funcion 2: Establece fase de vuelo del cohete
 def determinar_estado_vuelo(altitud_actual, altitud_previa, aceleracion):
     if altitud_actual > altitud_previa:
         estado = "Ascenso"
     else:
-        # si baja mucho o si frena feo, ya abrio el paracaidas
+        # si baja mucho o si frena mal, ya abrio el paracaidas
         if altitud_actual <= ALTURA_PARACAIDAS or aceleracion <= DESACELERACION_PARACAIDAS:
             estado = "Despliegue de Paracaidas"
         else:
@@ -34,7 +34,7 @@ def evaluar_alerta_temperatura(temp_celsius):
         return False
 
 
-def main():
+def Flujo_vuelo():
     tiempo = 0
     altitud_previa = 0.0
     altitud_maxima = 0.0
@@ -55,7 +55,7 @@ def main():
         if dato == "FIN" or dato == "fin":
             break
 
-        # a veces el usuario escribe mal, entonces valido
+        # Por si se escribe mal el num.
         try:
             presion = float(dato)
         except:
@@ -67,11 +67,11 @@ def main():
 
         altitud_actual = calcular_altitud(presion)
 
-        # guardo la altitud mas alta que ha llegado
+        # altitud mas alta que ha llegado
         if altitud_actual > altitud_maxima:
             altitud_maxima = altitud_actual
 
-        # detecto el apogeo solo la primera vez que empieza a bajar
+        # se detecto el apogeo solo la primera vez que empieza a bajar
         if apogeo_detectado == False and altitud_actual < altitud_previa:
             apogeo_detectado = True
             print("AQUI FUE EL APOGEO")
@@ -79,7 +79,7 @@ def main():
         estado = determinar_estado_vuelo(altitud_actual, altitud_previa, aceleracion)
         alarma = evaluar_alerta_temperatura(temperatura)
 
-        # acumuladores para el promedio de temperatura
+        #  promedio de temperatura
         suma_temp = suma_temp + temperatura
         cont_temp = cont_temp + 1
 
@@ -120,4 +120,4 @@ def main():
         print("El operador termino la simulacion")
 
 
-main()
+Flujo_vuelo()
