@@ -12,8 +12,9 @@ def calcular_altitud(presion_hpa):
     altitud = 44330 * (1 - (presion_hpa / 1013.25) ** 0.1903)
     return altitud
 
-
-# funcion 2: Establece fase de vuelo del cohete
+# import random
+# =random.uniform()
+# funcion 2: determina fase de vuelo del cohete
 def determinar_estado_vuelo(altitud_actual, altitud_previa, aceleracion):
     if altitud_actual > altitud_previa:
         estado = "Ascenso"
